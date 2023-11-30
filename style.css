@@ -1,0 +1,18 @@
+/* Variables de colores */
+:root,
+[data-bs-theme=light] {
+    --color-primario: #3afcff;
+    --color-secundario: #00ff2f;
+    --color-tercero: rgb(212, 241, 25);
+    --color-cuarto: rgb(255, 255, 255);
+    
+}
+
+/* Estilo para el segundo tipo de letra */
+.Enunciado {
+    font-family: 'Georgia';
+}
+
+.Videojuegos {
+    font-family: 'Haettenschweiler';
+}

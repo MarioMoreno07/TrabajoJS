@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <!-- Enlaces a bootstrap-->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <style type="text/css">
+        form,
+        #resultadoBusqueda {
+            display: none;
+        }
+
+        #formularios {
+            margin-top: 60px;
+        }
+    </style>
+    <title>Eventos</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Eventos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Eventos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" id="mnuAltaEventos">Alta de eventos</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li><a class="dropdown-item" href="#" id="mnuListadoEventos">Listado de eventos</a></li>
+
+                            <li><a class="dropdown-item" href="#" id="mnuListadoEventosPorId">Buscar un evento por
+                                    id</a></li>
+                            <li><a class="dropdown-item" href="#" id="mnuListadoEventosPorUbicacion">Buscar un evento
+                                    por
+                                    Ubicacion</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Participantes
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" id="mnuAltaParticipantes">Alta participantes</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" id="mnuListadoParticipantes">Listado de
+                                    participantes</a></li>
+                            <li><a class="dropdown-item" href="#" id="mnuListadoParticipantesPorId">Buscar un
+                                    Participante por
+                                    id</a></li>
+                            <li><a class="dropdown-item" href="#" id="mnuBuscarParticipantePorNombre">Buscar un
+                                    Participante por
+                                    nombre</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" id="formularios">
+        <div class="row">
+            <form class="form-horizontal" name="frmAltaEvento" id="frmAltaEvento">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Alta de tipo de Eventos</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtNombre">Nombre</label>
+                        <div class="col-xs-4">
+                            <input id="txtnombre" name="txtnombre" placeholder="Nombre del evento"
+                                class="form-control input-md" type="text">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtFecha">Fecha</label>
+                        <div class="col-xs-4">
+                            <input id="txtFecha" name="txtFecha" placeholder="Fecha del evento"
+                                class="form-control input-md" type="date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtUbicacion">Ubicacion</label>
+                        <div class="col-xs-4">
+                            <input id="txtUbicacion" name="txtUbicacion" placeholder="Ubicacion del evento"
+                                class="form-control input-md" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtDescripcion">Descripcion</label>
+                        <div class="col-xs-4">
+                            <input id="txtDescripcion" name="txtDescripcion" placeholder="Descripción del evento"
+                                class="form-control input-md" type="text">
+                        </div>
+                    </div>
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="btnAceptarAltaEvento"></label>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnAceptarAltaEvento" name="btnAceptarAltaEvento"
+                                class="btn btn-primary" value="Aceptar" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <!--Buscar-->
+    <div class="container" id="formularios">
+        <div class="row">
+            <form class="form-horizontal" name="frmBuscar" id="frmBuscar">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Buscar Evento por id</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtIdDelEvento">Id del Evento</label>
+                        <div class="col-xs-4">
+                            <input id="txtIdDelEvento" name="txtIdDelEvento" placeholder="Id del evento"
+                                class="form-control input-md" type="text">
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="btnBuscar"></label>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnBuscar" name="btnBuscar" class="btn btn-primary"
+                                value="Aceptar" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <form class="form-horizontal" name="frmModificarEvento" id="frmModificarEvento">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Modificar un Evento</legend>
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtId">Id</label>
+                        <div class="col-xs-4">
+                            <input id="txtId" name="txtId" placeholder="ID del evento" class="form-control input-md"
+                                type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtNombre">Nombre</label>
+                        <div class="col-xs-4">
+                            <input id="txtnombre" name="txtnombre" placeholder="Nombre del evento"
+                                class="form-control input-md" type="text">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtFecha">Fecha</label>
+                        <div class="col-xs-4">
+                            <input id="txtFecha" name="txtFecha" placeholder="Fecha del evento"
+                                class="form-control input-md" type="date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtUbicacion">Ubicacion</label>
+                        <div class="col-xs-4">
+                            <input id="txtUbicacion" name="txtUbicacion" placeholder="Ubicacion del evento"
+                                class="form-control input-md" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtDescripcion">Descripcion</label>
+                        <div class="col-xs-4">
+                            <input id="txtDescripcion" name="txtDescripcion" placeholder="Descripción del evento"
+                                class="form-control input-md" type="text">
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="btnAceptarModificar"></label>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnAceptarModificar" name="btnAceptarModificar"
+                                class="btn btn-primary" value="Aceptar" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="container" id="formularios">
+        <div class="row">
+            <form class="form-horizontal" name="frmBuscarPorUbicacion" id="frmBuscarPorUbicacion">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Buscar Evento</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtUbicacionDelEvento">Ubicacion del Evento</label>
+                        <div class="col-xs-4">
+                            <input id="txtUbicacionDelEvento" name="txtUbicacionDelEvento"
+                                placeholder="Ubicacion del evento" class="form-control input-md" type="text">
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="btnBuscarPorUbicacion"></label>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnBuscarPorUbicacion" name="btnBuscar" class="btn btn-primary"
+                                value="Aceptar" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <!--Participante-->
+    <div class="container" id="formularioParticipante">
+        <div class="row">
+            <form class="form-horizontal" name="frmAltaParticipante" id="frmAltaParticipante">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Alta de participantes</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtnombreParticipante">Nombre</label>
+                        <div class="col-xs-4">
+                            <input id="txtnombreParticipante" name="txtnombreParticipante"
+                                placeholder="Nombre del participante" class="form-control input-md" type="text">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtEmail">Email</label>
+                        <div class="col-xs-4">
+                            <input id="txtEmail" name="txtEmail" placeholder="Email del participante"
+                                class="form-control input-md" type="text">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtDescripcionParticipante">Descripcion</label>
+                        <div class="col-xs-4">
+                            <input id="txtDescripcionParticipante" name="txtDescripcionParticipante"
+                                placeholder="Descripción del participante" class="form-control input-md" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtId_evento">Id</label>
+                        <div class="col-xs-4">
+                            <select class="form-select" name="txtId_evento" id="txtId_evento">
+
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="btnAceptarAltaParticipante"></label>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnAceptarAltaParticipante" name="btnAceptarAltaParticipante"
+                                class="btn btn-primary" value="Aceptar" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <div class="container" id="formularios">
+                <div class="row">
+                    <form class="form-horizontal" name="frmBuscarParticipante" id="frmBuscarParticipante">
+                        <fieldset>
+                            <!-- Form Name -->
+                            <legend>Buscar Participante</legend>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label" for="txtIdDelParticipante">Id del
+                                    participante</label>
+                                <div class="col-xs-4">
+                                    <input id="txtIdDelParticipante" name="txtIdDelParticipante"
+                                        placeholder="Id del participante" class="form-control input-md" type="text">
+                                </div>
+                            </div>
+
+                            <!-- Button -->
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label" for="btnBuscarParticipante"></label>
+                                <div class="col-xs-4">
+                                    <input type="button" id="btnBuscarParticipante" name="btnBuscarParticipante"
+                                        class="btn btn-primary" value="Aceptar" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="container" id="formularios">
+                <div class="row">
+                    <form class="form-horizontal" name="frmBuscarPorNombre" id="frmBuscarPorNombre">
+                        <fieldset>
+                            <!-- Form Name -->
+                            <legend>Buscar Participante por nombre</legend>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label" for="txtNombreParticipante">Nombre del Participante</label>
+                                <div class="col-xs-4">
+                                    <input id="txtNombreParticipante" name="txtNombreParticipante"
+                                        placeholder="Ubicacion del evento" class="form-control input-md" type="text">
+                                </div>
+                            </div>
+        
+                            <!-- Button -->
+                            <div class="form-group">
+                                <label class="col-xs-4 control-label" for="btnBuscarPorParticipante"></label>
+                                <div class="col-xs-4">
+                                    <input type="button" id="btnBuscarPorParticipante" name="btnBuscar" class="btn btn-primary"
+                                        value="Aceptar" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+    <!--RESULTADOS DE BUSQUEDA-->
+    <div id="resultadoBusqueda"></div>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/objeto.js"></script>
+    <script type="text/javascript" src="js/codigo.js"></script>
+</body>
+
+</html>
